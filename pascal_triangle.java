@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class pascalTriangle {
+public class pascal_triangle {
 
-    public static void main(String[] args){
-        List<List<Integer>> pascalsssss = generate(3);
-        
-            System.out.println(pascalsssss);
+    public static void main(String[] args) {
+        List<List<Integer>> pascalsssss = generatePascalTriangle(3);
+
+        System.out.println(pascalsssss);
 
     }
-    public static List<List<Integer>> generate(int numRows) {
+
+    public static List<List<Integer>> generatePascalTriangle(int numRows) {
         // given num rows, make list of size num rows
         // for each row, make list of size row number
         // for each elelemnt in row, if position 0 = fill 1,
@@ -32,5 +33,4 @@ public class pascalTriangle {
 
     }
 
-        
 }
