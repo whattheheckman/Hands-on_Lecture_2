@@ -7,29 +7,37 @@ public class spiral_matrix {
             List<Integer> list = new ArrayList<>();
             int left = 0;
             int top = 0;
-            int right = matrix.length - 1;
-            int bottom = matrix.length - 1;
+            //arrays are 0 indexed, so we have to subtract by one to have the correct amount of items
+            //if we don't get the length of how long each row is, the algo only works for a m * m sized array
+            //this allows the 2nd dimension of array's length to be different from the first dimensions aka, an m * n sized array
+            int right = matrix[0].length - 1; 
+            int bottom = matrix.length - 1;   
+
+            
+            //while the horizontal and vertical location might seem switched compared to traditional ordered pairs
+            //it is in the right place because the matrix is declared first by row, then by column
             while (left <= right && top <= bottom) {
-                for (int j = left; j <= right; j++) {
-                    list.add(matrix[top][j]);
+                for (int horizLocation = left; horizLocation <= right; horizLocation++) {
+                    list.add(matrix[top][horizLocation]);
                 }
                 top++;
-                for (int i = top; i <= bottom; i++) {
-                    list.add(matrix[i][right]);
+                //the for loop compoarision is less than OR equal because we need it to run for the case of the bottom now, not excluding that case with normal less than
+                for (int vertLocation = top; vertLocation <= bottom; vertLocation++) {
+                    list.add(matrix[vertLocation][right]);
                 }
                 right--;
                 if (top <= bottom) {
-                    for (int j = right; j >= left; j--) {
-                        list.add(matrix[bottom][j]);
+                    //the following 2 for loops are greater than because we are counting down instead of counting up
+                    for (int horizLocation = right; horizLocation >= left; horizLocation--) {
+                        list.add(matrix[bottom][horizLocation]);
                     }
                 }
                 bottom--;
-                if (left <= right) {
-                    for (int i = bottom; i >= top; i--) {
-                        list.add(matrix[i][left]);
+                if (left < right) {
+                    for (int vertLocation = bottom; vertLocation > top; vertLocation--) {
+                        list.add(matrix[vertLocation][left]);
                     }
                 }
-                left++;
             }
             return list;
         }
